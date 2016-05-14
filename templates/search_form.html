@@ -1,0 +1,14 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<h1>Search</h1>
+  <form action="" method="post" name="search">
+      {{ form.hidden_tag() }}
+      <p>
+          Insert a query:<br>
+          {{ form.query(size=80) }}<br>
+      </p>
+      <p><input type="submit" value="Search"></p>
+    </form>
+
+{% endblock %}

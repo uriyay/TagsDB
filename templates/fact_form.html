@@ -1,0 +1,14 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<h1>Add Fact</h1>
+  <form action="" method="post" name="new_fact">
+      {{ form.hidden_tag() }}
+      <p>
+          Insert a fact:<br>
+          {{ form.fact(size=80) }}<br>
+      </p>
+      <p><input type="submit" value="Add Fact"></p>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+<html>
+    <title>{{ title }} - TagsDB</title>
+    <head>
+        <p>
+        Flashed Messages:<br>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <li> {{message}} </li><br>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        End of Flashed Messages
+        </p>
+    </head>
+
+    <body>
+        {% block content %}{% endblock %}
+        <a href=/index.html>Home</a> | <a href=add_fact>Add Fact</a> | <a href=search>Search</a>
+    </body>
+
+</html>
