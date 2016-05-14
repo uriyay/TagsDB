@@ -18,15 +18,15 @@ class FactForm(Form):
 class SearchForm(Form):
     query = StringField('query', validators=[])
 
-def show_fact(fact):
-    flash('%s -> %s' % (fact.text, ';'.join(fact.tags)))
+def fact_to_string(fact):
+    return '%s -> %s' % (fact.text, ';'.join(fact.tags))
 
 @app.route('/add_fact', methods=['GET', 'POST'])
 def add_fact():
     form = FactForm()
     if form.validate_on_submit():
         fact = tags_db.Fact(form.fact.data)
-        show_fact(fact)
+        flash(fact_to_string(fact))
         db.add_fact(fact)
     return render_template('fact_form.html',
                            title='Add Fact',
@@ -39,9 +39,9 @@ def search():
         query = form.query.data
         if query != '':
             result = db.search(query)
-            results_facts = [x.text for x in result.keys()]
+            results_facts = [fact_to_string(x) for x in result.keys()]
         else:
-            results_facts = [x.text for x in db.facts]
+            results_facts = [fact_to_string(x) for x in db.facts]
         return render_template('search_results.html',
                                title='Search',
                                results=results_facts)
@@ -53,7 +53,7 @@ def search():
 @app.route('/')
 def home():
     return render_template('index.html',
-                           title='Home Page')
+                           title='TagsDB - tagged facts database')
 
 if __name__ == "__main__":
     app.run(debug=True,

@@ -1,8 +1,14 @@
 <html>
     <title>{{ title }} - TagsDB</title>
     <head>
-        <p>
-        Flashed Messages:<br>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    </head>
+
+    <body style="text-align:center">
+        <h1>{{ title }}</h1>
+        {% block content %}{% endblock %}
+        <br>
+        <div style="text-align:left">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
@@ -10,12 +16,7 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-        End of Flashed Messages
-        </p>
-    </head>
-
-    <body>
-        {% block content %}{% endblock %}
+        </div>
         <a href=/index.html>Home</a> | <a href=add_fact>Add Fact</a> | <a href=search>Search</a>
     </body>
 

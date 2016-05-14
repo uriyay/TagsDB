@@ -1,8 +1,9 @@
 {% extends "basic.html" %}
 
 {% block content %}
-<h1>Search Results</h1>
-    {% for result in results %}
-        <li>{{result}}</li><br>
-    {% endfor %}
+<div style="text-align:left">
+        {% for result in results %}
+            <li>{{result}}</li><br>
+        {% endfor %}
+</div>
 {% endblock %}
